@@ -1,5 +1,8 @@
+import base64
 import os
 from flask import Flask
+
+from tranqtube.misc import string_to_base64
 
 app = Flask(__name__)
 app.config.from_object('tranqtube.default_settings')
@@ -15,3 +18,9 @@ if not app.debug:
     app.logger.addHandler(file_handler)
 
 import tranqtube.views
+
+
+
+
+# populate bytes for jinja
+app.jinja_env.globals.update(string_to_base64=string_to_base64)
