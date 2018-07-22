@@ -1,0 +1,20 @@
+	upstream tranqtube {
+    	server tranqtube:8000;
+    }
+
+	server {
+    	listen 80;
+
+    	location / {
+        	proxy_pass http://tranqtube;
+
+			# auth_basic "Restricted";
+    		# auth_basic_user_file /etc/nginx/.htpasswd;
+
+     	   	proxy_set_header Host $http_host;
+        	proxy_set_header X-Real-IP $remote_addr;
+        	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+			add_header Strict-Transport-Security "max-age=31536000; includeSubDomains;";
+    	}
+    }
