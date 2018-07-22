@@ -6,7 +6,7 @@ from tranqtube.misc import string_to_base64
 
 app = Flask(__name__)
 app.config.from_object('tranqtube.default_settings')
-app.config.from_envvar('TRANQTUBE_SETTINGS')
+#app.config.from_envvar('TRANQTUBE_SETTINGS')
 
 if not app.debug:
     import logging

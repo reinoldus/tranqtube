@@ -1,13 +1,15 @@
-from flask import render_template, jsonify
+from flask import render_template, jsonify, request
 from pymongo import MongoClient
 import base64
 from tranqtube import app
 
+# this should be fine
+client = MongoClient('mongodb://localhost:27017/')
+db = client.tranqtube
+
 
 @app.route('/')
 def index():
-    client = MongoClient('mongodb://localhost:27017/')
-    db = client.tranqtube
     videos = db['videos']
     videos = videos.find()
 
@@ -17,16 +19,31 @@ def index():
 
 @app.route('/play/<web_path>')
 def play(web_path):
+    videos = db['videos']
+    video = videos.find_one({"full_web_path": base64.b64decode(web_path).decode()})
 
-    web_path = base64.b64decode(web_path).decode()
-
-    return render_template('play.html', web_path=web_path)
+    return render_template('play.html', video=video)
 
 
-@app.route('/pause/<pause_time>')
-def pause(pause_time):
-    app.logger.warning('sample message', pause_time)
+@app.route('/pause', methods = ['GET', 'POST'])
+def pause():
+    data = request.json
+    videos = db['videos']
+    video = videos.find_one_and_update(
+        {"full_web_path": data['src']},
+        {'$set': {'paused': data['time']}}
+    )
+    return jsonify(data)
 
-    return jsonify({
-        "time": pause_time
-    })
+
+@app.route('/leaving', methods = ['GET', 'POST'])
+def leaving():
+    data = request.json
+    videos = db['videos']
+    video = videos.find_one_and_update(
+        {"full_web_path": data['src']},
+        {'$set': {'last_left': data['time']}}
+    )
+    print("??")
+
+    return jsonify(data)
