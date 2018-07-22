@@ -1,0 +1,2 @@
+recursive-include tranqtube/templates *
+recursive-include tranqtube/static *
