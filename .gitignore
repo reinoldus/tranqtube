@@ -5,3 +5,4 @@ settings.cfg
 *.log*
 *.mp4
 .idea
+docker-compose.yml
