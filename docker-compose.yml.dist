@@ -4,16 +4,11 @@ services:
   nginx-videos:
     image: nginx:latest
     volumes:
-      - ./deployment/nginx-videos/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./deployment/nginx-videos/nginx_default.conf/:/etc/nginx/conf.d/default.conf:ro
-    ports:
-     - "44445:80"
-  nginx-web:
-    image: nginx:latest
+      - ./deployment/nginx-videos/tranqtube.conf/:/etc/nginx/conf.d/default.conf:ro
     ports:
      - "44444:80"
-    volumes:
-      - ./deployment/nginx-web:/etc/nginx/conf.d/default.conf:ro
+     - "44445:8080"
   tranqtube:
     build: .
   mongo:
