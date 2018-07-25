@@ -15,7 +15,7 @@ EXPOSE 8000
 
 ADD /deploy-requirements.txt /home/flask/tranqtube/requirements.txt
 
-RUN pip3 install -r /home/flask/tranqtube/requirements.txt && chown flask:flask -R /home/flask/
+RUN pip3 install --user -r /home/flask/tranqtube/requirements.txt && chown flask:flask -R /home/flask/
 
 # Has to be here, otherwise app folder is root user?!
 COPY /tranqtube /home/flask/tranqtube/tranqtube/
