@@ -11,5 +11,7 @@ services:
      - "44445:8080"
   tranqtube:
     build: .
+    environment:
+     - VIDEO_SERVER_IP="http://localhost:44445/"
   mongo:
     image: "mongo"

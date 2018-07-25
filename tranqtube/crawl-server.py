@@ -4,7 +4,7 @@ from pprint import pprint
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
 
-server_ip = "http://144.76.3.243:44445/"
+
 supported_extensions = ["mp4", "webm"]
 
 
@@ -34,9 +34,11 @@ def crawl(address):
 if __name__ == "__main__":
     import os
     import sys
-
     sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/../")
-    print(sys.path)
+    server_ip = os.getenv("VIDEO_SERVER_IP", "http://localhost:44445/")
+
+    print("Looking for videos on: ", server_ip)
+
     from tranqtube.default_settings import MONGO
     client = MongoClient(MONGO)
     db = client.tranqtube
