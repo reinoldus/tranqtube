@@ -13,18 +13,26 @@ RUN useradd --create-home --shell /bin/bash flask && echo "flask:flask" | chpass
 
 EXPOSE 8000
 
+USER flask
+
+ENV PATH=$PATH:/home/flask/.local/bin
+
 ADD /deploy-requirements.txt /home/flask/tranqtube/requirements.txt
 
-RUN pip3 install --user -r /home/flask/tranqtube/requirements.txt && chown flask:flask -R /home/flask/
+RUN pip3 install --user -r /home/flask/tranqtube/requirements.txt
 
 # Has to be here, otherwise app folder is root user?!
 COPY /tranqtube /home/flask/tranqtube/tranqtube/
 COPY /tranqtube/boot.py /home/flask/tranqtube/
 COPY /settings.cfg /home/flask/tranqtube/
 
-ENV FLASK_APP=tranqtube TRANQTUBE_SETTINGS=../settings.cfg
+USER root
+
+RUN chown flask:flask -R /home/flask/
 
 USER flask
+
+ENV FLASK_APP=tranqtube TRANQTUBE_SETTINGS=../settings.cfg
 
 WORKDIR /home/flask/tranqtube
 
