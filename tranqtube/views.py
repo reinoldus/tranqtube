@@ -4,7 +4,7 @@ import base64
 from tranqtube import app
 
 # this should be fine
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient(app.config['MONGO'])
 db = client.tranqtube
 
 

@@ -30,8 +30,10 @@ def crawl(address):
 
     return videos
 
+
 if __name__ == "__main__":
-    client = MongoClient('mongodb://localhost:27017/')
+    from tranqtube.default_settings import MONGO
+    client = MongoClient(MONGO)
     db = client.tranqtube
     videos = db['videos']
     db.videos.create_index("full_web_path", unique=True)
