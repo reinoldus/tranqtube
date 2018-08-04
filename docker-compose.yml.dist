@@ -14,4 +14,4 @@ services:
     environment:
      - VIDEO_SERVER_IP="http://localhost:44445/"
   mongo:
-    image: "mongo"
+    image: "mongo:4"

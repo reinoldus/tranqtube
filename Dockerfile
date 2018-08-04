@@ -24,7 +24,6 @@ RUN pip3 install --user -r /home/flask/tranqtube/requirements.txt
 # Has to be here, otherwise app folder is root user?!
 COPY /tranqtube /home/flask/tranqtube/tranqtube/
 COPY /tranqtube/boot.py /home/flask/tranqtube/
-COPY /settings.cfg /home/flask/tranqtube/
 
 USER root
 

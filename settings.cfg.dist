@@ -1,2 +1,0 @@
-DEBUG = True
-mongo = mongo:27017
