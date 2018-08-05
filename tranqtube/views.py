@@ -15,6 +15,14 @@ def index():
     videos = db['videos']
     videos = videos.find()
 
+    video_dict = {}
+
+    # for video in videos:
+    #     for node in video.path:
+    #
+    #         if node in video_dict:
+    #             video_dict[node] = []
+
     app.logger.warning('sample message')
     return render_template('index.html', videos=videos, base64=base64)
 
