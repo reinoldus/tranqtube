@@ -35,6 +35,7 @@ USER root
 WORKDIR /home/flask/tranqtube
 
 RUN yarn install
+RUN mkdir -p ./tranqtube/static/jquery/ ./tranqtube/static/bootstrap/ ./tranqtube/static/video.js/
 RUN cp -R ./node_modules/jquery/dist/* ./tranqtube/static/jquery/
 RUN cp -R ./node_modules/bootstrap/dist/* ./tranqtube/static/bootstrap/
 RUN cp -R ./node_modules/video.js/dist/* ./tranqtube/static/video.js/
