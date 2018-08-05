@@ -1,16 +1,16 @@
 var options = {};
 
-var x = $j("#last_paused");
-var y = $j("#last_left");
+var x = $("#last_paused");
+var y = $("#last_left");
 
-$j(window).on("unload", function(){
+$(window).on("unload", function(){
         let data = JSON.stringify({
             src: player.currentSrc(),
             time: player.currentTime()
         });
         console.log(data);
 
-        $j.ajax({
+        $.ajax({
             type: "POST",
             url: "/leaving",
             data:  data,
@@ -55,7 +55,7 @@ var player = videojs('my-video', options, function onPlayerReady() {
         });
 
         console.log(data);
-        $j.ajax({
+        $.ajax({
             type: "POST",
             url: "/pause",
             data:  data,

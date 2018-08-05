@@ -18,7 +18,10 @@ def crawl(address):
         if item['type'] == "directory":
             new_address = address + name + "/"
 
-            videos.extend(crawl(new_address))
+            # Go into directory by recursive call
+            dir_videos = crawl(new_address)
+
+            videos.extend(dir_videos)
 
         elif item['type'] == "file" and name.split(".")[-1] in supported_extensions:
             clean_name = urllib.parse.unquote(address + name).replace(server_ip, "")

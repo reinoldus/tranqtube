@@ -1,28 +1,30 @@
 {% extends "template.html" %}
 
-        {% block scripts %}
-            <script src="{{ url_for('static', filename='video.js/video.js') }}"></script>
-            <script src="{{ url_for('static', filename='player.js') }}"></script>
-        <link rel="stylesheet" href="{{ url_for('static', filename='dist/video-js.css') }}">
-        {% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='video.js/video.js') }}"></script>
+    <script src="{{ url_for('static', filename='player.js') }}"></script>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='video.js/video-js.css') }}">
+{% endblock %}
+
 
 {% block body %}
-<video id="my-video" class="video-js" controls preload="auto" data-setup="{}">
-    <source src="{{ video.full_web_path }}" type='video/mp4'>
-    <p class="vjs-no-js">
-        To view this video please enable JavaScript, and consider upgrading to a web browser that
-        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-    </p>
-</video>
+    <video id="my-video" class="video-js" controls preload="auto" data-setup="{}">
+        <source src="{{ video.full_web_path }}" type='video/mp4'>
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>
 
 
-<span id="last_paused">
-    {{ video.paused }}
-</span>
-<br />
-<span id="last_left">
-    {{ video.last_left }}
-</span>
-
-
+    <span id="last_paused">
+        {{ video.paused }}
+    </span>
+    <br/>
+    <span id="last_left">
+        {{ video.last_left }}
+    </span>
 {% endblock %}

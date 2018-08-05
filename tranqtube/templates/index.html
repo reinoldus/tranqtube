@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>tranqtube</title>
-</head>
+{% extends "template.html" %}
 
-<body>
+{% block body %}
 
-  {% for video in videos %}
-    <li><a href="{{ url_for("play", web_path=string_to_base64(video.full_web_path)) }}">{{ video.file_name }}</a></li>
-  {% endfor %}
+    <div class="row">
+        <ul>
+            {% for video in videos %}
+                <li>
+                    <a href="{{ url_for("play", web_path=string_to_base64(video.full_web_path)) }}">{{ video.file_name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
-</body>
-</html>
+{% endblock %}

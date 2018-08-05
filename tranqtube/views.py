@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from flask import render_template, jsonify, request
 from pymongo import MongoClient
 import base64
