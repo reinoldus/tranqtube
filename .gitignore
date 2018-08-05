@@ -9,3 +9,5 @@ docker-compose.yml
 yarn.lock
 tranqtube/static/jquery/
 tranqtube/static/video.js/
+tranqtube/static/bootstrap/
+node_modules/
