@@ -7,16 +7,23 @@
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='video.js/video-js.css') }}">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='video.js-skin/style.css') }}">-->
 {% endblock %}
 
 
 {% block body %}
-    <video id="my-video" class="video-js" controls preload="auto" data-setup="{}">
+    <video
+            id="my-video"
+            class="video-js" controls preload="auto"
+            data-setup='{"playbackRates": [1, 1.25, 1.5, 1.75, 2] }'>
         <source src="{{ video.full_web_path }}" type='video/mp4'>
         <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a web browser that
             <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
         </p>
+        <!-- Captions can be added like this:
+        <track label="pt" kind="captions" srclang="pt" src="http://playertest.longtailvideo.com/caption-files/sintel-en.srt" default="">
+         -->
     </video>
 
 
